@@ -52,9 +52,9 @@ jobRole.addEventListener('change', e => {
  //In the conditional, if the value of the event.target is equal to "other", display the “Other job role” field. And if the value is anything, hide it.
          
           if (e.target.value === "other") {
-            jobRole.style.display = "block";
+           document.getElementById('other-job-role').style.visibility = "visible";
           } else {
-            jobRole.style.hidden = "hidden";
+            document.getElementById('other-job-role').style.visibility = "hidden";
           }
         }
 
