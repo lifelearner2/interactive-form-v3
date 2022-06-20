@@ -14,7 +14,7 @@
 //14. when JS is unavailable or disabled - all hidden info and form fields should be visible and available to be filled out.
 //15. To temp disable JS - open chrome dev tools and click on the setting wheel, then under preferences scroll down to debugger and click on disable javaScript.
 //16. when you refresh browser while js disabled you will see a red symbol at top right in search box and the hidden field (other job role) will appear.
-//17. Other job role should be hidden when js is back on until "other" is selected under job role. (it's hidden but I haven't made it come back yet)
+//17. Other job role should be hidden when js is back on until "other" is selected under job role. (DONE)
 //18. Info on each payment method and all t shirt colors should also show when js if off
 //19. be sure to  turn js back on before you submit project.
 
@@ -23,7 +23,7 @@
 const nameInput = document.getElementById("name");
 console.log(nameInput);
 
-//the below code loads the cursor to the first line when the page is loaded.(this works)
+//the below code loads the cursor to the first line when the page is loaded.(this works) window.onload loads this function upon page refresh
 window.onload = function() {
 document.getElementById("name").focus();
 
@@ -39,6 +39,7 @@ console.log(otherJob);
 const jobRole = document.getElementById("title");
 console.log(jobRole);
 
+//listening for a change event on the jobRole 
 jobRole.addEventListener('change', e => {
   console.log(e.target);
 
@@ -49,8 +50,8 @@ jobRole.addEventListener('change', e => {
           const userSelection = e.target.value;
           console.log(userSelection);
 
- //In the conditional, if the value of the event.target is equal to "other", display the “Other job role” field. And if the value is anything, hide it.
-         
+ //In the conditional, if the value of the event.target is equal to "other", display the “Other job role” field. And if the value is anything else, hide it.
+       //I could not use the variable name otherJob since when I declared it I also hid it so I had to use it's values.
           if (e.target.value === "other") {
            document.getElementById('other-job-role').style.visibility = "visible";
           } else {
@@ -59,60 +60,62 @@ jobRole.addEventListener('change', e => {
         }
 
     })
-
-
-
-
-
-
-
-
-// // function clicked (e) {
-// //    let clicked = e.target;
-// //    console.log(clicked);
-// // //Listening for a change event on Job Role (not working)
-// // const jobRole = document.querySelector("Job Role");
-// //  jobRole = 
-// //                      clicked.addEventListener('change', e => {
-// //                      console.log(e.target.value);
-
-// //                      for ( let i = 0; i < jobRole.length; i++ ) {
-                      
-// //                         const userRole = jobRole[i];
-// //                         const userSelection = e.target.value;
-
-// //                         console.log(jobRole);
-
-// //                         if (userSelection === userRole) {
-// //                           jobRole.classList.add("clicked");
-// //                         } else {
-// //                           jobRole.classList.remove("clicked");
-                       
-// //                         }
-                        
-
-// //                         if (jobRole === otherJob) {
-// //                            display: "other job role";
-// //                            //console.log(e.target.value); 
-// //                         }
-
-//                       }
-                                 
-//                      });
-                            
-                  
-//                //                       `<label for="title">Job Role</label>
-//                //  <select id="title" name="other-job-role"> document.querySelector('Job Role')  
-//                //  input.addEventListener('change', (e) => {  
-                 
-//    // };`
-
-//    //Make Other Job Role field appear if "other " is selected under Job Role
-
-                 
-  
-                 
+// // function clicked (e) {               
 //                };
+//declaring variables and showing what they hold. Using querySelector to select an element that has multiple values
+const shirtSizes = document.querySelector('#shirt-sizes')
+const shirtDesigns = document.querySelector('#shirt-designs');
+const shirtColors = document.querySelector('#color');
+
+const jsPuns = document.getElementsByClassName(".shirt-designs, js puns");
+const heartJs = document.getElementsByClassName(".shirt-designs, heart js");
+
+console.log(shirtSizes)
+console.log(shirtDesigns)
+console.log(shirtColors)
+console.log(shirtColors.children)
+
+console.log(jsPuns)
+console.log(heartJs)
+
+// shirtDesigns[2] = ("true");
+// console.log(shirtDesigns[2]);
+
+// shirtDesigns[jsPuns].e.target.value = true;
+// console.log(shirtDesigns[jsPuns]);
+
+//listen for a change event on shirtDesigns section.
+shirtDesigns.addEventListener('change', e=> {
+  console.log(e.target);
+
+  //if the designSelected is jsPuns then show the jsPuns colors and hide the others.
+  for ( let i = 0; i < shirtDesigns.length; i++)  {
+    
+    const designSelected  = e.target.value;
+    console.log(designSelected);
+
+    if (e.target.value === "jsPuns") {
+      document.getElementById('jsPuns').style.visibility = "visible";
+    }
+    else {
+      document.getElementById('jsPuns').style.visibility = "hidden";
+    }
+  }
+
+})
+
+// if (e.target.value === "js puns") {
+//   shirtColors.style.display = "js puns";
+// } 
+// else {
+//   shirtColors.style.display = "none";
+
+// }
+
+
+
+
+
                   console.log('test')
                   console.log(nameInput)
                   console.log(otherJob)
