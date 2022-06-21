@@ -1,6 +1,6 @@
 //1. Code should check fields to make sure they contain correct info and display and error if they don't. (use validator)
 //2. When form first loads the cursor should automatically focus on the first text field. (Done with focus method)
-//3. as user makes selections - the form should update accordingly - as they chose design for shirt, the color options for that shirt will be listed in teh drop down menu next to that selection,
+//3. as user makes selections - the form should update accordingly - as they chose design for shirt, the color options for that shirt will be listed in teh drop down menu next to that selection(DONE)
 //4. as users register for conf activities the total cost should be highlighted below the list of activities.
 //5. When they select an activity that conflicts with another activity, the conflicting activity should be grayed out.
 //6. Can pick different payment options. Based on what they select a different message will appear at the bottom of the page.
@@ -13,7 +13,7 @@
 //13. Make sure when filled out correctly that the page refreshes and resets all the fields.
 //14. when JS is unavailable or disabled - all hidden info and form fields should be visible and available to be filled out.
 //15. To temp disable JS - open chrome dev tools and click on the setting wheel, then under preferences scroll down to debugger and click on disable javaScript.
-//16. when you refresh browser while js disabled you will see a red symbol at top right in search box and the hidden field (other job role) will appear.
+//16. when you refresh browser while js disabled you will see a red symbol at top right in search box and the hidden field (other job role) will appear. (done if disabled)
 //17. Other job role should be hidden when js is back on until "other" is selected under job role. (DONE)
 //18. Info on each payment method and all t shirt colors should also show when js if off
 //19. be sure to  turn js back on before you submit project.
@@ -44,8 +44,8 @@ jobRole.addEventListener('change', e => {
   
     for ( let i = 0; i < jobRole.length; i++) {
           const userSelection = e.target.value;
-          //console.log(userSelection);
-          //console.log(e.target.value);
+          // console.log(userSelection);
+          // console.log(e.target.value);
  //In the conditional, if the value of the event.target is equal to "other", display the “Other job role” field. And if the value is anything else, hide it.
        //I could not use the variable name otherJob since when I declared it I also hid it so I had to use it's values.
           if (e.target.value === "other") {
@@ -63,9 +63,7 @@ let shirtDesigns = document.querySelector('#shirt-designs');
 let shirtColors = document.querySelector('#color');
 let shirtColorOptions = shirtColors.children;
  
-console.log(shirtColorOptions)
-// console.log(jsPuns)
-// console.log(heartJs)
+// console.log(shirtColorOptions)
 
 //disabling the colors from showing at start of page
 shirtColors.disabled = true; 
@@ -74,7 +72,7 @@ shirtColors.disabled = true;
 //enable the shirtColor section once a design theme is selected
 shirtDesigns.addEventListener('change', e=> {
   shirtColors.disabled = false;
-  //console.log(e.target);
+  // console.log(shirtDesigns);
 
  
   //if the designSelected is jsPuns then show the jsPuns colors and hide the others. Adding children allows the console.log to print the actual selected item for designSelected.
@@ -103,28 +101,50 @@ shirtDesigns.addEventListener('change', e=> {
 
    //Register for Activities Section
    //Logging two variables - "fieldset(register for activities)" and "p (total)"               
-
+      const registerForActivities = document.getElementById('activities');
+      const activitiesCost = document.getElementsByClassName('activities-cost');
+      console.log(registerForActivities);
+      console.log(activitiesCost);
 
    //creating a variable to store total cost and give it initial value of 0.
-
+const checkboxes = document.querySelector('.checkbox input');
+console.log(checkboxes)
 
 //Use the fieldset/register variable already created  to do the change/event listener
+registerForActivities.addEventListener('change', e=> {
+  //inside e listener create variable to store "data cost" get.attribute of the e.target - getting cost of each item 
 
-//inside e listener create variable to store "data cost" get.attribute of the e.target - getting cost of each item 
+   
+ //inside e listener create if/else to listen if it was checked or unchecked. Use "check property"
+ //if checked - add the data cost of the selection to the total variable that was created earlier.
+//if unchecked - then subtract the data cost. Test by logging out total cost variable as well as checked property of e. target. You need to select activities to see it.
+for (let i = 0; i < checkbox; i++) {
+if (e.target.checked) {
+e.target +itemCost.true;
+
+} else { 
+e.target -itemCost.false;
+
+let checkbox = checkbox[i].getAttribute("data-cost");
+}
+}
+
+});
+
+
+
+
 
 
  //note: computer will not read numbers as a number when it's in a "string of quotes" so you need to use the unary plus sign operator to make it read as a number.
  //to test: log variable and log a second time with "typeOf" operator to ensure it's being read as a number. 
  //You need to first select it in register section to print to console.
  
- //inside e listener create if/else to listen if it was checked or unchecked. Use "check property"
 
- //if checked - add the data cost of the selection to the total variable that was created earlier.
-//if unchecked - then subtract the data cost. Test by logging out total cost variable as well as checked property of e. target. You need to select activities to see it.
+
 
 
 //update the innerHTML of the total p element (p element name.innerHTML = template literal )
 
  //example: activitiesTotalCostElement.textContent= `Total: $${activitiesTotalCost}`; This has two $$ because one is for the ${} and the other $ is for the literal dollar amount - the amount of the cost will be inside.
 
- 
