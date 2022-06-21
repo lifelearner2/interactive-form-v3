@@ -19,37 +19,33 @@
 //19. be sure to  turn js back on before you submit project.
 
 
-
+//basic info/name section:
 const nameInput = document.getElementById("name");
-console.log(nameInput);
+//console.log(nameInput);
 
 //the below code loads the cursor to the first line when the page is loaded.(this works) window.onload loads this function upon page refresh
 window.onload = function() {
 document.getElementById("name").focus();
-
 }
 
+//job role section:
 //Hide the "text field" with the id of "other-job-role" so it is not displayed when the form first loads.(this works)
 const otherJob = document.getElementById('other-job-role').style.visibility = "hidden";
-
-console.log(otherJob);
+//console.log(otherJob);
 
 // Program the "Job Role" <select> element to listen for user changes. When a change is detected, display/hide the "text field" based on the user’s selection in the drop down menu.
-
 const jobRole = document.getElementById("title");
-console.log(jobRole);
+//console.log(jobRole);
 
 //listening for a change event on the jobRole 
 jobRole.addEventListener('change', e => {
-  console.log(e.target);
+  //console.log(e.target);
 
   
     for ( let i = 0; i < jobRole.length; i++) {
-  
-          //let jobRole = otherJob[i];
           const userSelection = e.target.value;
-          console.log(userSelection);
-
+          //console.log(userSelection);
+          //console.log(e.target.value);
  //In the conditional, if the value of the event.target is equal to "other", display the “Other job role” field. And if the value is anything else, hide it.
        //I could not use the variable name otherJob since when I declared it I also hid it so I had to use it's values.
           if (e.target.value === "other") {
@@ -58,67 +54,77 @@ jobRole.addEventListener('change', e => {
             document.getElementById('other-job-role').style.visibility = "hidden";
           }
         }
-
     })
-// // function clicked (e) {               
-//                };
+
+//t-shirt section:
 //declaring variables and showing what they hold. Using querySelector to select an element that has multiple values
-const shirtSizes = document.querySelector('#shirt-sizes')
-const shirtDesigns = document.querySelector('#shirt-designs');
-const shirtColors = document.querySelector('#color');
+let shirtSizes = document.querySelector('#shirt-sizes');
+let shirtDesigns = document.querySelector('#shirt-designs');
+let shirtColors = document.querySelector('#color');
+let shirtColorOptions = shirtColors.children;
+ 
+console.log(shirtColorOptions)
+// console.log(jsPuns)
+// console.log(heartJs)
 
-const jsPuns = document.getElementsByClassName(".shirt-designs, js puns");
-const heartJs = document.getElementsByClassName(".shirt-designs, heart js");
+//disabling the colors from showing at start of page
+shirtColors.disabled = true; 
 
-console.log(shirtSizes)
-console.log(shirtDesigns)
-console.log(shirtColors)
-console.log(shirtColors.children)
-
-console.log(jsPuns)
-console.log(heartJs)
-
-// shirtDesigns[2] = ("true");
-// console.log(shirtDesigns[2]);
-
-// shirtDesigns[jsPuns].e.target.value = true;
-// console.log(shirtDesigns[jsPuns]);
-
-//listen for a change event on shirtDesigns section.
+//listen for a change event on shirtDesigns section like selecting from drop down menu.
+//enable the shirtColor section once a design theme is selected
 shirtDesigns.addEventListener('change', e=> {
-  console.log(e.target);
+  shirtColors.disabled = false;
+  //console.log(e.target);
 
-  //if the designSelected is jsPuns then show the jsPuns colors and hide the others.
-  for ( let i = 0; i < shirtDesigns.length; i++)  {
+ 
+  //if the designSelected is jsPuns then show the jsPuns colors and hide the others. Adding children allows the console.log to print the actual selected item for designSelected.
+  for ( let i = 0; i < shirtColorOptions.length; i++)  {
     
     const designSelected  = e.target.value;
+    const designThemes = shirtColorOptions[i].getAttribute('data-theme');
+    console.log(designThemes);
     console.log(designSelected);
 
-    if (e.target.value === "jsPuns") {
-      document.getElementById('jsPuns').style.visibility = "visible";
-    }
-    else {
-      document.getElementById('jsPuns').style.visibility = "hidden";
-    }
+    //if value of what the user clicked matches the value of the design theme then we will show those colors that match and hide the ones that don't.
+    if (e.target.value === designThemes) {
+      shirtColorOptions[i].hidden = false;
+      shirtColorOptions[i].selected = true;
+      //or else if not matching keep them hidden and unable to select.
+  } else {
+      shirtColorOptions[i].hidden = true;
+      shirtColorOptions[i].selected = false;
+  
+  }
+ 
+  
   }
 
 })
 
-// if (e.target.value === "js puns") {
-//   shirtColors.style.display = "js puns";
-// } 
-// else {
-//   shirtColors.style.display = "none";
-
-// }
+   //Register for Activities Section
+   //Logging two variables - "fieldset(register for activities)" and "p (total)"               
 
 
+   //creating a variable to store total cost and give it initial value of 0.
 
 
+//Use the fieldset/register variable already created  to do the change/event listener
 
-                  console.log('test')
-                  console.log(nameInput)
-                  console.log(otherJob)
-                  console.log(addEventListener)
-                            
+//inside e listener create variable to store "data cost" get.attribute of the e.target - getting cost of each item 
+
+
+ //note: computer will not read numbers as a number when it's in a "string of quotes" so you need to use the unary plus sign operator to make it read as a number.
+ //to test: log variable and log a second time with "typeOf" operator to ensure it's being read as a number. 
+ //You need to first select it in register section to print to console.
+ 
+ //inside e listener create if/else to listen if it was checked or unchecked. Use "check property"
+
+ //if checked - add the data cost of the selection to the total variable that was created earlier.
+//if unchecked - then subtract the data cost. Test by logging out total cost variable as well as checked property of e. target. You need to select activities to see it.
+
+
+//update the innerHTML of the total p element (p element name.innerHTML = template literal )
+
+ //example: activitiesTotalCostElement.textContent= `Total: $${activitiesTotalCost}`; This has two $$ because one is for the ${} and the other $ is for the literal dollar amount - the amount of the cost will be inside.
+
  
