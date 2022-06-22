@@ -137,10 +137,10 @@ console.log(typeof(dataCost));
 
  //PAYMENT INFO SECTION:
  //create variables to reference paymentType, creditCard, paypal and bitcoin. Log to console.
- let paymentType = document.querySelector(".payment-methods");
- let creditCard = document.querySelector("#credit-card");
- let paypal = document.querySelector(".paypal");
- let bitcoin = document.querySelector(".bitcoin");
+ let paymentType = document.getElementById("payment");
+ let creditCard = document.getElementById("credit-card");
+ let paypal = document.getElementById("paypal");
+ let bitcoin = document.getElementById("bitcoin");
 
  console.log(paymentType);
  console.log(creditCard);
@@ -152,11 +152,36 @@ paypal = document.querySelector(".paypal").style.visibility = "hidden";
 bitcoin = document.querySelector(".bitcoin").style.visibility = "hidden";
 
  //use paymentType to target the second child and give it the selected property. Use .children property and setAttribute method.
+//I'm selecting the second child of paymentType with the number one. Zero is "select method", one gives credit card and two and three give the others. Selecting this (and using the word 'selected'(this equals credit card on html) makes credit card appear as a default when page is loaded.
+ paymentType[1].setAttribute('selected', ' ');
 
  //use paymentType variable to listen for a change event - when detected, display the div element w/id that matches the value of the e.target and hide the other two div elements.
+ //I created an event listener to listen for any changes on the paymentType. I created a conditional statement if paypal is clicked to show the paypal info and hide other info and repeated this for bitcoin. 
+ //I also added another conditional statement for credit-card because if they clicked bitcoin or paypal and then wanted to go back to credit card I had to make sure the credit card info would display again and I did that with ' ' and then made the others hidden.
+ paymentType.addEventListener('change', e => {
+  if ( e.target.value === 'paypal') {
+    creditCard.style.display = 'none';
+    document.getElementById("paypal").style.visibility = "visible";
+    document.getElementById("bitcoin").style.visibility = "hidden"
+   
+   } else {
+   if (e.target.value === 'bitcoin') {
+      creditCard.style.display = 'none';
+      document.getElementById("paypal").style.visibility = "hidden";
+      document.getElementById("bitcoin").style.visibility = "visible";
+    } else {
+      if (e.target.value = 'credit-card') {
+        creditCard.style.display = '';
+        document.getElementById("paypal").style.visibility = "hidden";
+        document.getElementById("bitcoin").style.visibility = "hidden";
+      }
+    }
+  }
+  });
+ //save/refresh when payment method option is updated in drop down menu , payment sections in the form will update. THIS WORKS
 
- //save/refresh when payment method option is updated in drop down menu , payment sections in the form will update.
-
+ //FORM VALIDATION SECTION
+ //
 
      
 
