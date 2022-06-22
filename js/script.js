@@ -1,7 +1,7 @@
 //1. Code should check fields to make sure they contain correct info and display and error if they don't. (use validator)
 //2. When form first loads the cursor should automatically focus on the first text field. (Done with focus method)
 //3. as user makes selections - the form should update accordingly - as they chose design for shirt, the color options for that shirt will be listed in teh drop down menu next to that selection(DONE)
-//4. as users register for conf activities the total cost should be highlighted below the list of activities.
+//4. as users register for conf activities the total cost should be highlighted below the list of activities. DONE I THINK 
 //5. When they select an activity that conflicts with another activity, the conflicting activity should be grayed out.
 //6. Can pick different payment options. Based on what they select a different message will appear at the bottom of the page.
 //7. if they submit form and haven't provided all the necessary info, messages will appear letting them know what they missed (highlighted in red or messaging such as "name field is required")
@@ -19,7 +19,7 @@
 //19. be sure to  turn js back on before you submit project.
 
 
-//basic info/name section:
+//BASIC INFO/NAME SECTION:
 const nameInput = document.getElementById("name");
 //console.log(nameInput);
 
@@ -28,7 +28,7 @@ window.onload = function() {
 document.getElementById("name").focus();
 }
 
-//job role section:
+//JOB ROLE SECTION:
 //Hide the "text field" with the id of "other-job-role" so it is not displayed when the form first loads.(this works)
 const otherJob = document.getElementById('other-job-role').style.visibility = "hidden";
 //console.log(otherJob);
@@ -56,7 +56,7 @@ jobRole.addEventListener('change', e => {
         }
     })
 
-//t-shirt section:
+//T-SHIRT SECTION:
 //declaring variables and showing what they hold. Using querySelector to select an element that has multiple values
 let shirtSizes = document.querySelector('#shirt-sizes');
 let shirtDesigns = document.querySelector('#shirt-designs');
@@ -91,60 +91,102 @@ shirtDesigns.addEventListener('change', e=> {
   } else {
       shirtColorOptions[i].hidden = true;
       shirtColorOptions[i].selected = false;
-  
   }
- 
-  
-  }
-
+  } 
 })
 
-   //Register for Activities Section
-   //Logging two variables - "fieldset(register for activities)" and "p (total)"               
-      const registerForActivities = document.getElementById('activities');
-      const activitiesCost = document.getElementsByClassName('activities-cost');
-      console.log(registerForActivities);
-      console.log(activitiesCost);
 
-   //creating a variable to store total cost and give it initial value of 0.
-const checkboxes = document.querySelector('.checkbox input');
-console.log(checkboxes)
+//REGISTER FOR ACTIVITIES SECTION (rewrite for muscle memory)
+//Logging two variables - "fieldset(register for activities)" and "p (total)" 
+const registerForActivities = document.querySelector('#activities');
+const activitiesCost = document.querySelector(".activities-cost");
 
+console.log(registerForActivities);
+console.log(activitiesCost);
+
+//creating a variable to store total cost and give it initial value of 0.
+let totalCost = 0;
 //Use the fieldset/register variable already created  to do the change/event listener
-registerForActivities.addEventListener('change', e=> {
+registerForActivities.addEventListener('change', e => {
   //inside e listener create variable to store "data cost" get.attribute of the e.target - getting cost of each item 
-
-   
- //inside e listener create if/else to listen if it was checked or unchecked. Use "check property"
- //if checked - add the data cost of the selection to the total variable that was created earlier.
-//if unchecked - then subtract the data cost. Test by logging out total cost variable as well as checked property of e. target. You need to select activities to see it.
-for (let i = 0; i < checkbox; i++) {
-if (e.target.checked) {
-e.target +itemCost.true;
-
-} else { 
-e.target -itemCost.false;
-
-let checkbox = checkbox[i].getAttribute("data-cost");
-}
-}
-
-});
-
-
-
-
-
+let dataCost = e.target.getAttribute('data-cost');
+ //turning dataCost from a string to a number with unary plus operator
+dataCost = +dataCost;
+console.log(dataCost);
 
  //note: computer will not read numbers as a number when it's in a "string of quotes" so you need to use the unary plus sign operator to make it read as a number.
  //to test: log variable and log a second time with "typeOf" operator to ensure it's being read as a number. 
  //You need to first select it in register section to print to console.
+console.log(typeof(dataCost));
+//inside e listener create if/else to listen if it was checked or unchecked. Use "check property"
+//if checked - add the data cost of the selection to the total variable that was created earlier.
+//if unchecked - then subtract the data cost. Test by logging out total cost variable as well as checked property of e. target. You need to select activities to see it.
+  if (e.target.checked) {
+    totalCost += dataCost;
+  } else {
+    totalCost -= dataCost;
+    console.log(totalCost);
+    console.log(e.target);
+    console.log(dataCost);
+  }
+
+//update the innerHTML of the total p element (p element name.innerHTML = template literal )
+//example: activitiesTotalCostElement.textContent= `Total: $${activitiesTotalCost}`; This has two $$ because one is for the ${} and the other $ is for the literal dollar amount - the amount of the cost will be inside.
+ activitiesCost.innerHTML = `Total: $${totalCost}`;
+})
+
+ //PAYMENT INFO SECTION:
+ //create variables to reference paymentType, creditCard, paypal and bitcoin. Log to console.
+ let paymentType = document.querySelector(".payment-methods");
+ let creditCard = document.querySelector("#credit-card");
+ let paypal = document.querySelector(".paypal");
+ let bitcoin = document.querySelector(".bitcoin");
+
+ console.log(paymentType);
+ console.log(creditCard);
+ console.log(paypal);
+ console.log(bitcoin);
+
+ //use paypal and bitcoin variables to hide when page loads 
+paypal = document.querySelector(".paypal").style.visibility = "hidden";
+bitcoin = document.querySelector(".bitcoin").style.visibility = "hidden";
+
+ //use paymentType to target the second child and give it the selected property. Use .children property and setAttribute method.
+
+ //use paymentType variable to listen for a change event - when detected, display the div element w/id that matches the value of the e.target and hide the other two div elements.
+
+ //save/refresh when payment method option is updated in drop down menu , payment sections in the form will update.
+
+
+     
+
+
+ 
+  
  
 
 
 
 
-//update the innerHTML of the total p element (p element name.innerHTML = template literal )
 
- //example: activitiesTotalCostElement.textContent= `Total: $${activitiesTotalCost}`; This has two $$ because one is for the ${} and the other $ is for the literal dollar amount - the amount of the cost will be inside.
 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
