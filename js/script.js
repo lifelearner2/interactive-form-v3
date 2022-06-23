@@ -12,7 +12,8 @@ window.onload = function () {
 //JOB ROLE SECTION:
 //Hiding the "text field" with the id of "other-job-role" so it is not displayed when the form first loads.
 
-const otherJob = (document.getElementById("other-job-role").style.visibility = "hidden");
+const otherJob = (document.getElementById("other-job-role").style.visibility =
+  "hidden");
 console.log(otherJob);
 
 const jobRole = document.getElementById("title");
@@ -60,7 +61,6 @@ shirtDesigns.addEventListener("change", (e) => {
   for (let i = 0; i < shirtColorOptions.length; i++) {
     const designSelected = e.target.value;
     const designThemes = shirtColorOptions[i].getAttribute("data-theme");
-    console.log(designThemes);
     console.log(designSelected);
 
     //if value of what the user clicked matches the value of the design theme, show those colors that match and hide the ones that don't.
@@ -122,7 +122,7 @@ registerForActivities.addEventListener("change", (e) => {
 //PAYMENT INFO SECTION:
 //created variables to reference paymentType, creditCard, paypal and bitcoin. Log to console.
 let paymentType = document.getElementById("payment");
-let creditCard = document.querySelector(".credit-card-box");
+let creditCard = document.querySelector(".credit-card");
 let paypal = document.getElementById("paypal");
 let bitcoin = document.getElementById("bitcoin");
 
@@ -139,7 +139,7 @@ bitcoin = document.querySelector(".bitcoin").style.visibility = "hidden";
 //I'm selecting the second child of paymentType with the number one. Zero is "select method", one gives credit card and two and three give the others.
 //Selecting this (and using the word 'selected'(this equals credit card on html) makes credit card appear as a default when page is loaded.
 paymentType[1].setAttribute("selected", " ");
-
+console.log(creditCard);
 //used paymentType variable to listen for a change event - when detected, displaying the div element w/id that matches the value of the e.target and hiding the other two div elements.
 //I created an event listener to listen for any changes on the paymentType.
 //I created a conditional statement if paypal is clicked to show the paypal info and hide other info and repeated this for bitcoin.
@@ -183,7 +183,6 @@ function validationPass(element) {
   element.parentElement.classList.add("valid");
   element.parentElement.classList.remove("not-valid");
   element.parentElement.lastElementChild.style.display = "none";
-  console.log(element.lastElementChild);
 }
 console.log(validationPass);
 
@@ -232,7 +231,8 @@ const registerValidator = () => {
     validationPass(registerForActivities);
     let totalCost = registerSectionIsValid;
     console.log(
-      "The activities registered section evaluates to: ",`"${totalCost}"`
+      "The activities registered section evaluates to: ",
+      `"${totalCost}"`
     );
   } else {
     validationFail(registerForActivities);
@@ -271,9 +271,7 @@ const zipCodeValidator = () => {
     validationFail(zipCode);
     console.log(`This zip code validator prevented submission`);
   }
-  console.log(
-    `Zip code section validation test evaluates to ${zipCode.value}`
-  );
+  console.log(`Zip code section validation test evaluates to ${zipCode.value}`);
   return zipCodeIsValid;
 };
 
@@ -294,7 +292,7 @@ const cvvValidator = () => {
 //using form var to listen for the submit event
 form.addEventListener("submit", (e) => {
   console.log("submit handler is working");
-  e.preventDefault();
+  //e.preventDefault();
 
   //In below section: if these validators are not validated then the event.preventDefault() will not allow for the form to submit.
   if (!nameValidator()) {
@@ -311,22 +309,23 @@ form.addEventListener("submit", (e) => {
     console.log("Invalid registration prevented submission");
     e.preventDefault();
   }
+ 
+  if (paymentType[1].value === "credit-card") {
+    if (!creditCardValidator()) {
+      console.log("Invalid credit card prevented submission");
+      e.preventDefault();
+    }
 
-  if (!creditCardValidator()) {
-    console.log("Invalid credit card prevented submission");
-    e.preventDefault();
+    if (!zipCodeValidator()) {
+      console.log("Invalid zip code prevented submission");
+      e.preventDefault();
+    }
+
+    if (!cvvValidator()) {
+      console.log("Invalid cvv prevented submission");
+      e.preventDefault();
+    }
   }
-
-  if (!zipCodeValidator()) {
-    console.log("Invalid zip code prevented submission");
-    e.preventDefault();
-  }
-
-  if (!cvvValidator()) {
-    console.log("Invalid cvv prevented submission");
-    e.preventDefault();
-  }
-
   // try to create a helper functions for each required field that can be called in the e.listener to do the testing and return true or false depending on whether the field is valid or not.
 });
 
