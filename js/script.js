@@ -1,7 +1,6 @@
 //Unit 3 Project: Interactive Forms
 //BASIC INFO/NAME SECTION:
 const nameInput = document.getElementById("name");
-console.log(nameInput);
 
 //The window.onload code loads the cursor to the first line/name section when the page is loaded or refreshed.
 window.onload = function () {
