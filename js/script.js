@@ -296,12 +296,12 @@ form.addEventListener("submit", (e) => {
   if (!nameValidator()) {
     console.log("Invalid name prevented submission");
     e.preventDefault();
-  }
+  };
 
   if (!emailValidator()) {
     console.log("Invalid email prevented submission");
     e.preventDefault();
-  }
+  };
 
   if (!registerValidator()) {
     console.log("Invalid registration prevented submission");
@@ -311,17 +311,17 @@ form.addEventListener("submit", (e) => {
   if (!creditCardValidator()) {
     console.log("Invalid credit card prevented submission");
     e.preventDefault();
-  }
+  };
 
   if (!zipCodeValidator()) {
     console.log("Invalid zip code prevented submission");
     e.preventDefault();
-  }
+  };
 
   if (!cvvValidator()) {
     console.log("Invalid cvv prevented submission");
     e.preventDefault();
-  }
+  };
   
   // try to create a helper functions for each required field that can be called in the e.listener to do the testing and return true or false depending on whether the field is valid or not.
 });
@@ -333,4 +333,21 @@ form.addEventListener("submit", (e) => {
 //be sure to  turn js back on before you submit project.Info on each payment method and all t shirt colors should also show when js if off.
 
 //When user select an activity that conflicts with another activity, the conflicting activity should be grayed out.
+
+//ACCESSIBILITY SECTION:
+//creating var to ref activities and logging it out.
+const activitiesCheckbox = document.getElementById('activities-box');
+console.log(activitiesCheckbox);
+
+//used var above to loop over the activities' checkboxes.
+//added focus and blur events
+for (let i =0; i<activitiesCheckbox.length; i++) {
+  activitiesCheckbox[i].addEventListener ( 'focus', (e) => {
+    activitiesCheckbox[i].parentElement.classList.add('focus');
+  });
+  activitiesCheckbox[i].addEventListener('blur', (e) => {
+    activitiesCheckbox[i].parentElement.classList.remove('focus');
+  })
+};
+
 
